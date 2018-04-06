@@ -1,0 +1,4 @@
+pytest
+pycurl
+requests
+pyyaml
