@@ -6,8 +6,8 @@ HOME=`pwd`
 #yum install python-virtualenv wget unzip libcurl-devel unzip gcc openssl-devel redhat-rpm-config -y
 
 # Setup virtual environment
-virtualenv .kiali-qe-json
-source .kiali-qe-json/bin/activate
+virtualenv .kiali-qe-rest
+source .kiali-qe-rest/bin/activate
 
 # Install base requirements
 pip install -r requirements.txt
