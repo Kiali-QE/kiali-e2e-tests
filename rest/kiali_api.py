@@ -12,12 +12,8 @@ class kiali_api():
 
         self.rest_url = '{}/{}'.format(url, endpoint).format(namespace)
 
-    def get_service_graph_json(self):
-        response = rest(url=self.rest_url).get_json()
-        return response
-
     def get_kiali_service_graph_json(self, debug=False):
-        response = self.get_service_graph_json()
+        response = rest(url=self.rest_url).get_json()
 
         if debug:
             assert response.json, "JSON: {}".format(response.json)
