@@ -2,8 +2,7 @@
 
 HOME=`pwd`
 
-# Install virtualenv, libcurl-devel, gcc, wget, unzip, openssl-devel
-yum install python-virtualenv wget unzip -y
+yum install python-virtualenv  -y
 
 # Setup virtual environment
 virtualenv .kiali-qe-rest
@@ -22,8 +21,3 @@ then
     echo -e "\nInstalling RHEL dependencies..."
     pip install setuptools --upgrade
 fi
-
-rm -f chromedriver
-wget https://chromedriver.storage.googleapis.com/2.28/chromedriver_linux64.zip
-unzip chromedriver_linux64.zip
-
