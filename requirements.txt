@@ -1,4 +1,4 @@
 pytest
 pycurl
-requests
 pyyaml
+KialiClient
