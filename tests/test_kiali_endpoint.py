@@ -12,10 +12,10 @@ def test_service_graph_rest_endpoint(kiali_json):
     assert kiali_json != None, "Json: {}".format(kiali_json)
 
     # Validate Node count
-    assert kiali_json.get('elements').get('nodes') >= 1
+    assert len(kiali_json.get('elements').get('nodes')) >= 1
 
     # Validate edge count
-    assert kiali_json.get('elements').get('edges') >= 1
+    assert len(kiali_json.get('elements').get('edges')) >= 1
 
 def test_service_graph_bookinfo_namespace_(kiali_json):
 
