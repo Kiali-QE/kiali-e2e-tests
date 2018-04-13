@@ -12,5 +12,6 @@ def kiali_json():
         client = KialiClient(host=config.get('kiali_hostname'),
                              username=config.get('kiali_username'), password=config.get('kiali_password'))
 
-    return client.graph_namespace(namespace=config.get('mesh_bookinfo_namespace')).to_json_object()
+    return client.graph_namespace(namespace=config.get('mesh_bookinfo_namespace'),
+                                  params={'duration': '1m'}).to_json_object()
 
