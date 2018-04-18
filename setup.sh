@@ -12,8 +12,6 @@ source .kiali-qe-rest/bin/activate
 pip install -r requirements.txt
 pip install -U pip
 
-## Begin - Install mgmtsystem
-
 # Needed for RHEL7
 cat /etc/os-release | grep -q "Red Hat Enterprise Linux"
 if [ $? -eq "0" ]
