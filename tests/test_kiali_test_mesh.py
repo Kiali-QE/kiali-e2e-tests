@@ -25,10 +25,6 @@ def test_kiali_test_breath(kiali_client):
     validate_counts(kiali_client.graph_namespace(namespace=test_breath.namespace, params=PARAMS).to_json_object(),
                     test_breath)
 
-def test_kiali_test_breath(kiali_client):
-    validate_counts(kiali_client.graph_namespace(namespace=test_breath.namespace, params=PARAMS).to_json_object(),
-                    test_breath)
-
 def test_kiali_test_circle(kiali_client):
     validate_counts(kiali_client.graph_namespace(namespace=test_circle.namespace, params=PARAMS).to_json_object(),
                     test_circle)
@@ -41,12 +37,15 @@ def test_kiali_test_depth_sink(kiali_client):
     validate_counts(kiali_client.graph_namespace(namespace=test_depth_sink.namespace, params=PARAMS).to_json_object(),
                     test_depth_sink)
 
-def test_kiali_test_depth_sink(kiali_client):
+def test_kiali_test_hourglass(kiali_client):
     validate_counts(kiali_client.graph_namespace(namespace=test_hourglass.namespace, params=PARAMS).to_json_object(),
                     test_hourglass)
 
 def validate_counts(json, mesh):
     assert json != None, "Json: {}".format(json)
+
+    if len(json.get('elements').get('nodes')) == 0 and len(json.get('elements').get('edges')) == 0:
+        pytest.skip("Skip test - Node and Edge Count Zero - most likely due to mesh not being deployed")
 
     # Validate Node count
     assert len(json.get('elements').get('nodes')) == mesh.nodes
