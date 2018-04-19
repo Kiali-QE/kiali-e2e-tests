@@ -5,7 +5,7 @@ PARAMS = {'duration': '1m'}
 
 test_mesh = namedtuple('test_mesh', ['namespace', 'nodes', 'edges'])
 test_box             = test_mesh('kiali-test-box', 5, 7)
-test_breadth_sink    = test_mesh('kiali-test-breadth-sink', 7, 10)
+test_breadth_sink    = test_mesh('kiali-test-breath-sink', 7, 10)
 test_breath          = test_mesh('kiali-test-breath', 7, 6)
 test_circle          = test_mesh('kiali-test-circle', 7, 7)
 test_circle_callback = test_mesh('kiali-test-circle-callback', 7, 13)

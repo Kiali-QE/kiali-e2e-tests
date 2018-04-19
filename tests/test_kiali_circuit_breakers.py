@@ -1,0 +1,36 @@
+import os
+import conftest
+
+PARAMS = {'duration': '1m'}
+
+
+def test_kiali_circuit_breakers(kiali_client):
+    environment_configmap = conftest.__get_environment_config__(conftest.ENV_FILE)
+    circuit_breaker_configmap = conftest.__get_environment_config__(conftest.CIRCUIT_BREAKER_FILE)
+
+    add_command_text = "oc apply -n " + environment_configmap.get('mesh_bookinfo_namespace') + " -f " + os.path.abspath(os.path.realpath(conftest.CIRCUIT_BREAKER_FILE))
+
+    add_command_result = os.popen(add_command_text).read()
+
+    assert add_command_result.__contains__("created") or add_command_result.__contains__("configured")
+
+    graph = kiali_client.graph_namespace(namespace=environment_configmap.get('mesh_bookinfo_namespace'), params=PARAMS)
+
+    assert graph is not None
+
+    nodes = kiali_client.graph_namespace(namespace=environment_configmap.get('mesh_bookinfo_namespace'), params=PARAMS).elements['nodes']
+
+    assert nodes is not None
+
+    circuit_breaker = 0
+    for node in nodes:
+        if node.data.has_circuit_breaker == "true":
+            circuit_breaker = circuit_breaker +1
+
+    assert circuit_breaker is 1
+
+    delete_command_text = "oc delete destinationpolicies " + circuit_breaker_configmap['metadata']['name']
+
+    delete_command_result = os.popen(delete_command_text).read()
+
+    assert delete_command_result.__contains__("deleted")
