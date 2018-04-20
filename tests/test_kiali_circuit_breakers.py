@@ -24,7 +24,7 @@ def test_kiali_circuit_breakers(kiali_client):
 
     circuit_breaker = 0
     for node in nodes:
-        if node.data.has_circuit_breaker == "true":
+        if node.data.is_circuit_breaker == "true":
             circuit_breaker = circuit_breaker +1
 
     assert circuit_breaker is 1
