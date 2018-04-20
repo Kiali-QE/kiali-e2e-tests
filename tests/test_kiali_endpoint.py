@@ -25,4 +25,4 @@ def test_service_graph_bookinfo_namespace_(kiali_json):
     # validate edge count
     edges = kiali_json.get('elements').get('edges')
     assert len(edges) == BOOKINFO_EXPECTED_EDGES
-    assert json.dumps(edges, ensure_ascii=False, cls=ApiJsonEncoder).count('green') == BOOKINFO_EXPECTED_EDGES
+    #assert json.dumps(edges, ensure_ascii=False, cls=ApiJsonEncoder).count('green') == BOOKINFO_EXPECTED_EDGES
