@@ -20,6 +20,7 @@ def kiali_client():
     return __get_kiali_client__(config)
 
 def __get_kiali_client__(config):
+    print "\nGet Kiali Client for Kiali hostname: {}\n".format(config.get('kiali_hostname'))
     return KialiClient(host=config.get('kiali_hostname'),
                        username=config.get('kiali_username'), password=config.get('kiali_password'))
 
