@@ -3,6 +3,7 @@ import yaml
 from kiali import KialiClient
 
 ENV_FILE = './config/env.yaml'
+CIRCUIT_BREAKER_FILE = 'assets/circuitbreaker.yml'
 
 @pytest.fixture(scope="session")
 def kiali_json():
@@ -25,5 +26,4 @@ def __get_kiali_client__(config):
 def __get_environment_config__(env_file):
     with open(env_file) as yamlfile:
         config = yaml.load(yamlfile)
-
     return config
