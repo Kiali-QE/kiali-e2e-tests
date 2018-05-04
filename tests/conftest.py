@@ -12,7 +12,7 @@ def kiali_json():
     client = __get_kiali_client__(config)
 
     return client.graph_namespace(namespace=config.get('mesh_bookinfo_namespace'),
-                                  params={'duration': '1m'}).to_json_object()
+                                  params={'duration': '1m'})
 
 @pytest.fixture(scope='session')
 def kiali_client():

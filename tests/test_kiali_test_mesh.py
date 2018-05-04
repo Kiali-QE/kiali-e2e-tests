@@ -14,31 +14,31 @@ test_hourglass       = test_mesh('kiali-test-hourglass', 6, 7)
 
 
 def test_kiali_test_box(kiali_client):
-    validate_counts(kiali_client.graph_namespace(namespace=test_box.namespace, params=PARAMS).to_json_object(),
+    validate_counts(kiali_client.graph_namespace(namespace=test_box.namespace, params=PARAMS),
                     test_box)
 
 def test_kiali_test_breath_sink(kiali_client):
-    validate_counts(kiali_client.graph_namespace(namespace=test_breath_sink.namespace, params=PARAMS).to_json_object(),
+    validate_counts(kiali_client.graph_namespace(namespace=test_breath_sink.namespace, params=PARAMS),
                     test_breath_sink)
 
 def test_kiali_test_breath(kiali_client):
-    validate_counts(kiali_client.graph_namespace(namespace=test_breath.namespace, params=PARAMS).to_json_object(),
+    validate_counts(kiali_client.graph_namespace(namespace=test_breath.namespace, params=PARAMS),
                     test_breath)
 
 def test_kiali_test_circle(kiali_client):
-    validate_counts(kiali_client.graph_namespace(namespace=test_circle.namespace, params=PARAMS).to_json_object(),
+    validate_counts(kiali_client.graph_namespace(namespace=test_circle.namespace, params=PARAMS),
                     test_circle)
 
 def test_kiali_test_circle_callback(kiali_client):
-    validate_counts(kiali_client.graph_namespace(namespace=test_circle_callback.namespace, params=PARAMS).to_json_object(),
+    validate_counts(kiali_client.graph_namespace(namespace=test_circle_callback.namespace, params=PARAMS),
                     test_circle_callback)
 
 def test_kiali_test_depth_sink(kiali_client):
-    validate_counts(kiali_client.graph_namespace(namespace=test_depth_sink.namespace, params=PARAMS).to_json_object(),
+    validate_counts(kiali_client.graph_namespace(namespace=test_depth_sink.namespace, params=PARAMS),
                     test_depth_sink)
 
 def test_kiali_test_hourglass(kiali_client):
-    validate_counts(kiali_client.graph_namespace(namespace=test_hourglass.namespace, params=PARAMS).to_json_object(),
+    validate_counts(kiali_client.graph_namespace(namespace=test_hourglass.namespace, params=PARAMS),
                     test_hourglass)
 
 def validate_counts(json, mesh):
