@@ -1,6 +1,5 @@
 import pytest
 import json
-from kiali.client import ApiJsonEncoder
 
 # Note: Number of services +1 Views Group Node
 BOOKINFO_EXPECTED_NODES=8

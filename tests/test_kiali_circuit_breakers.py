@@ -18,13 +18,13 @@ def test_kiali_circuit_breakers(kiali_client):
 
     assert graph is not None
 
-    nodes = kiali_client.graph_namespace(namespace=environment_configmap.get('mesh_bookinfo_namespace'), params=PARAMS).elements['nodes']
+    nodes = kiali_client.graph_namespace(namespace=environment_configmap.get('mesh_bookinfo_namespace'), params=PARAMS)["elements"]['nodes']
 
     assert nodes is not None
 
     circuit_breaker = 0
     for node in nodes:
-        if node.data.has_c_b == "true":
+        if 'hasCB' in node["data"] and  node["data"]["hasCB"] == "true":
             circuit_breaker = circuit_breaker +1
 
     assert circuit_breaker is 1
