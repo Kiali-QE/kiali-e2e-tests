@@ -4,6 +4,7 @@ from kiali import KialiClient
 
 ENV_FILE = './config/env.yaml'
 CIRCUIT_BREAKER_FILE = 'assets/circuitbreaker.yml'
+ROUTE_RULE_FILE = 'assets/route-rule-recommendation-v1_and_v2.yml'
 
 @pytest.fixture(scope="session")
 def kiali_json():
