@@ -13,7 +13,7 @@ test_depth_sink      = test_mesh('kiali-test-depth-sink', 7, 10)
 test_hourglass       = test_mesh('kiali-test-hourglass', 6, 7)
 
 
-def test_kiali_test_box(kiali_client):
+def _test_kiali_test_box(kiali_client):
     validate_counts(kiali_client.graph_namespace(namespace=test_box.namespace, params=PARAMS),
                     test_box)
 
