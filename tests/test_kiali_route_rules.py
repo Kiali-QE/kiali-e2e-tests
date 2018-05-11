@@ -25,7 +25,7 @@ def test_kiali_route_rules(kiali_client):
 
     #route_rule_count = get_route_rule_count(kiali_client, environment_configmap)
 
-    assert get_route_rule_count(kiali_client, environment_configmap) == 2
+    assert get_route_rule_count(kiali_client, environment_configmap) > 0
 
     delete_command_text = "oc delete routerule " + route_rule_configmap['metadata']['name'] + " -n " +  environment_configmap.get('mesh_bookinfo_namespace')
 
