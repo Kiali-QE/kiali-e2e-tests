@@ -1,6 +1,7 @@
-import os
-import conftest
 import time
+import conftest
+import os
+from utils.timeout import timeout
 
 PARAMS = {'duration': '1m'}
 
@@ -23,20 +24,27 @@ def test_kiali_route_rules(kiali_client):
 
     assert nodes is not None
 
-    #route_rule_count = get_route_rule_count(kiali_client, environment_configmap)
+    with timeout(seconds=30, error_message='Timed out waiting for RouteRule to be Created'):
+        while True:
+            if get_route_rule_count(kiali_client, environment_configmap) > 0:
+                break
 
-    assert get_route_rule_count(kiali_client, environment_configmap) > 0
+            time.sleep(1)
 
-    delete_command_text = "oc delete routerule " + route_rule_configmap['metadata']['name'] + " -n " +  environment_configmap.get('mesh_bookinfo_namespace')
+    delete_command_text = "oc delete routerule " + route_rule_configmap['metadata'][
+        'name'] + " -n " + environment_configmap.get('mesh_bookinfo_namespace')
 
     delete_command_result = os.popen(delete_command_text).read()
 
     assert delete_command_result.__contains__("deleted")
 
-    time.sleep(10)
+    with timeout(seconds=30, error_message='Timed out waiting for RouteRule to be Deleted'):
+        while True:
+            # Validate that JSON no longer has Route Rules
+            if get_route_rule_count(kiali_client, environment_configmap) == 0:
+                break
 
-    # Validate that JSON no longer has Route Rules
-    assert get_route_rule_count(kiali_client, environment_configmap) == 0
+            time.sleep(1)
 
 def get_route_rule_count(kiali_client, environment_configmap):
 

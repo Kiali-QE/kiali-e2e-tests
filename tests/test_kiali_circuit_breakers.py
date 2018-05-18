@@ -1,8 +1,9 @@
 import os
 import conftest
+from utils.timeout import timeout
+import time
 
 PARAMS = {'duration': '1m'}
-
 
 def test_kiali_circuit_breakers(kiali_client):
     environment_configmap = conftest.__get_environment_config__(conftest.ENV_FILE)
@@ -18,16 +19,22 @@ def test_kiali_circuit_breakers(kiali_client):
 
     assert graph is not None
 
-    nodes = kiali_client.graph_namespace(namespace=environment_configmap.get('mesh_bookinfo_namespace'), params=PARAMS)["elements"]['nodes']
+    with timeout(seconds=30, error_message='Timed out waiting for Circuit Breaker to be Created'):
+        while True:
 
-    assert nodes is not None
+            nodes = kiali_client.graph_namespace(namespace=environment_configmap.get('mesh_bookinfo_namespace'), params=PARAMS)["elements"]['nodes']
 
-    circuit_breaker = 0
-    for node in nodes:
-        if 'hasCB' in node["data"] and  node["data"]["hasCB"] == "true":
-            circuit_breaker = circuit_breaker +1
+            assert nodes is not None
 
-    assert circuit_breaker is 1
+            circuit_breaker = 0
+            for node in nodes:
+                if 'hasCB' in node["data"] and  node["data"]["hasCB"] == "true":
+                    circuit_breaker = circuit_breaker +1
+
+            if circuit_breaker is 1:
+                break
+
+            time.sleep(1)
 
     delete_command_text = "oc delete destinationpolicies " + circuit_breaker_configmap['metadata']['name'] + " -n " +  environment_configmap.get('mesh_bookinfo_namespace')
 
