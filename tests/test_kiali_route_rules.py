@@ -24,8 +24,6 @@ def test_kiali_route_rules(kiali_client):
 
     assert nodes is not None
 
-    #route_rule_count = get_route_rule_count(kiali_client, environment_configmap)
-
     with timeout(seconds=30, error_message='Timed out waiting for RouteRule to be Created'):
         while True:
             if get_route_rule_count(kiali_client, environment_configmap) > 0:
