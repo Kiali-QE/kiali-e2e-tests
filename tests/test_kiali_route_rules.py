@@ -6,7 +6,7 @@ from utils.timeout import timeout
 PARAMS = {'duration': '1m'}
 
 
-def test_kiali_route_rules(kiali_client):
+def _test_kiali_route_rules(kiali_client):
     environment_configmap = conftest.__get_environment_config__(conftest.ENV_FILE)
     route_rule_configmap = conftest.__get_environment_config__(conftest.ROUTE_RULE_FILE)
 
@@ -38,7 +38,7 @@ def test_kiali_route_rules(kiali_client):
 
     assert delete_command_result.__contains__("deleted")
 
-    with timeout(seconds=30, error_message='Timed out waiting for RouteRule to be Deleted'):
+    with timeout(seconds=300, error_message='Timed out waiting for RouteRule to be Deleted'):
         while True:
             # Validate that JSON no longer has Route Rules
             if get_route_rule_count(kiali_client, environment_configmap) == 0:
