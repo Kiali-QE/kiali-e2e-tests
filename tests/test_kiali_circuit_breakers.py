@@ -19,19 +19,18 @@ def test_kiali_circuit_breakers(kiali_client):
 
     assert graph is not None
 
-    with timeout(seconds=30, error_message='Timed out waiting for Circuit Breaker to be Created'):
+    with timeout(seconds=60, error_message='Timed out waiting for Circuit Breaker to be Created'):
         while True:
-
             nodes = kiali_client.graph_namespace(namespace=environment_configmap.get('mesh_bookinfo_namespace'), params=PARAMS)["elements"]['nodes']
 
             assert nodes is not None
 
             circuit_breaker = 0
             for node in nodes:
-                if 'hasCB' in node["data"] and  node["data"]["hasCB"] == "true":
+                if 'hasCB' in node["data"] and  node["data"]["hasCB"]:
                     circuit_breaker = circuit_breaker +1
 
-            if circuit_breaker is 1:
+            if circuit_breaker > 0:
                 break
 
             time.sleep(1)
