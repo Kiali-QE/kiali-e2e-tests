@@ -5,8 +5,8 @@ PARAMS = {'duration': '1m'}
 
 test_mesh = namedtuple('test_mesh', ['namespace', 'nodes', 'edges'])
 test_box             = test_mesh('kiali-test-box', 5, 7)
-test_breath_sink    = test_mesh('kiali-test-breath-sink', 7, 10)
-test_breath          = test_mesh('kiali-test-breath', 7, 6)
+test_breadth_sink    = test_mesh('kiali-test-breadth-sink', 7, 10)
+test_breadth         = test_mesh('kiali-test-breadth', 7, 6)
 test_circle          = test_mesh('kiali-test-circle', 7, 7)
 test_circle_callback = test_mesh('kiali-test-circle-callback', 7, 13)
 test_depth_sink      = test_mesh('kiali-test-depth-sink', 7, 10)
@@ -17,13 +17,13 @@ def _test_kiali_test_box(kiali_client):
     validate_counts(kiali_client.graph_namespace(namespace=test_box.namespace, params=PARAMS),
                     test_box)
 
-def test_kiali_test_breath_sink(kiali_client):
-    validate_counts(kiali_client.graph_namespace(namespace=test_breath_sink.namespace, params=PARAMS),
-                    test_breath_sink)
+def test_kiali_test_breadth_sink(kiali_client):
+    validate_counts(kiali_client.graph_namespace(namespace=test_breadth_sink.namespace, params=PARAMS),
+                    test_breadth_sink)
 
-def test_kiali_test_breath(kiali_client):
-    validate_counts(kiali_client.graph_namespace(namespace=test_breath.namespace, params=PARAMS),
-                    test_breath)
+def test_kiali_test_breadth(kiali_client):
+    validate_counts(kiali_client.graph_namespace(namespace=test_breadth.namespace, params=PARAMS),
+                    test_breadth)
 
 def test_kiali_test_circle(kiali_client):
     validate_counts(kiali_client.graph_namespace(namespace=test_circle.namespace, params=PARAMS),
