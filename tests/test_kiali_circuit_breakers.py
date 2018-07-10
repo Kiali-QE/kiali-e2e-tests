@@ -35,7 +35,7 @@ def test_kiali_circuit_breakers(kiali_client):
 
             time.sleep(1)
 
-    delete_command_text = "oc delete destinationpolicies " + circuit_breaker_configmap['metadata']['name'] + " -n " +  environment_configmap.get('mesh_bookinfo_namespace')
+    delete_command_text = "oc delete destinationrule " + circuit_breaker_configmap['metadata']['name'] + " -n " +  environment_configmap.get('mesh_bookinfo_namespace')
 
     delete_command_result = os.popen(delete_command_text).read()
 
