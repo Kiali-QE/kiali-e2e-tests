@@ -4,6 +4,7 @@ from kiali import KialiClient
 
 ENV_FILE = './config/env.yaml'
 CIRCUIT_BREAKER_FILE = 'assets/circuitbreaker.yml'
+VIRTUAL_SERVICE_FILE = 'assets/bookinfo-ratings-delay.yaml'
 
 @pytest.fixture(scope="session")
 def kiali_json():
@@ -12,7 +13,7 @@ def kiali_json():
     client = __get_kiali_client__(config)
 
     return client.graph_namespace(namespace=config.get('mesh_bookinfo_namespace'),
-                                  params={'duration': '1m'}).to_json_object()
+                                  params={'duration': '1m'})
 
 @pytest.fixture(scope='session')
 def kiali_client():
