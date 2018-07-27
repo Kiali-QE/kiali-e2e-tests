@@ -2,6 +2,7 @@ import pytest
 import json
 
 # Note: Number of services +1 Views Group Node
+# Note: Node and Edge counts are based on traffic origainating from the Ingress
 BOOKINFO_EXPECTED_NODES=7
 BOOKINFO_EXPECTED_EDGES=6
 
@@ -21,7 +22,7 @@ def test_service_graph_bookinfo_namespace_(kiali_json):
 
     # Validate Node count
     assert len(kiali_json.get('elements').get('nodes')) == BOOKINFO_EXPECTED_NODES
-
+    
     # validate edge count
     edges = kiali_json.get('elements').get('edges')
     assert len(edges) >= BOOKINFO_EXPECTED_EDGES
