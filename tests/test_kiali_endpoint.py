@@ -1,9 +1,8 @@
 import pytest
 import json
 
-# Note: Number of services +1 Views Group Node
-BOOKINFO_EXPECTED_NODES=8
-BOOKINFO_EXPECTED_EDGES=7
+BOOKINFO_EXPECTED_NODES=7
+BOOKINFO_EXPECTED_EDGES=6
 
 
 def test_service_graph_rest_endpoint(kiali_json):
