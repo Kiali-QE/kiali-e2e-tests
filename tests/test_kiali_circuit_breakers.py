@@ -3,7 +3,7 @@ import conftest
 from utils.timeout import timeout
 import time
 
-PARAMS = {'duration': '1m'}
+PARAMS = {'graphType': 'versionedApp', 'duration': '60s'}
 
 def test_kiali_circuit_breakers(kiali_client):
     environment_configmap = conftest.__get_environment_config__(conftest.ENV_FILE)
@@ -20,7 +20,7 @@ def test_kiali_circuit_breakers(kiali_client):
 
     with timeout(seconds=60, error_message='Timed out waiting for Circuit Breaker to be Created'):
         while True:
-            if get_cb_count(kiali_client, bookinfo_namespace) > cb_count:
+            if get_cb_count(kiali_client, bookinfo_namespace) >= cb_count:
                 break
 
     time.sleep(1)

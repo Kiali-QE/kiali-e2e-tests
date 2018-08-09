@@ -3,7 +3,7 @@ import conftest
 import os
 from utils.timeout import timeout
 
-PARAMS = {'duration': '1m'}
+PARAMS = {'graphType': 'versionedApp', 'duration': '60s'}
 
 def test_kiali_virtual_service(kiali_client):
     environment_configmap = conftest.__get_environment_config__(conftest.ENV_FILE)
@@ -22,7 +22,7 @@ def test_kiali_virtual_service(kiali_client):
 
     with timeout(seconds=30, error_message='Timed out waiting for VirtualService to be Created'):
         while True:
-            if get_vs_count(kiali_client, bookinfo_namespace) > vs_count:
+            if get_vs_count(kiali_client, bookinfo_namespace) >= vs_count:
                 break
 
             time.sleep(1)
