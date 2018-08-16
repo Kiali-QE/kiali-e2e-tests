@@ -36,7 +36,7 @@ def do_test(kiali_client, graph_params, yaml_file, badge):
     add_command_result = os.popen(add_command_text).read()
     assert add_command_result.__contains__("created") or add_command_result.__contains__("configured")
 
-    graph = kiali_client.graph_namespace(namespace=environment_configmap.get('mesh_bookinfo_namespace'), params=graph_params)
+    graph = kiali_client.graph_namespace(namespace=bookinfo_namespace, params=graph_params)
     assert graph is not None
 
     with timeout(seconds=60, error_message='Timed out waiting for Create'):
@@ -61,9 +61,9 @@ def do_test(kiali_client, graph_params, yaml_file, badge):
 
     return True
 
-def get_badge_count(kiali_client, bookinfo_namespace, graph_params, badge):
+def get_badge_count(kiali_client, namespace, graph_params, badge):
 
-    nodes = kiali_client.graph_namespace(namespace=bookinfo_namespace, params=graph_params)["elements"]['nodes']
+    nodes = kiali_client.graph_namespace(namespace=namespace, params=graph_params)["elements"]['nodes']
     assert nodes is not None
 
     count = 0
