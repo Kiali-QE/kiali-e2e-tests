@@ -1,22 +1,41 @@
-# Kiali REST test cases
+# Kiali E2E Tests
 
-## Preparing the Environment
+### Project Structure
 
-- `./setup.sh` will provide a quickstart environment for RHEL or Fedora with virtualenv called kiali-qe-rest and all the pip modules intalled.
-
-- You can manually activate the environment by `source .kiali-qe-rest/bin/activate`
-
-- If you don't want to create a virtualenv, a simple `pip install -r requirements.txt` will be install the requirements needed on your python environment
-
-## Environment Variables
-
-- You must change `kiali_hostname`, `kiali_username` and `kiali_password` according to your configuration.
+* `kiali-qe-rest/`: Root directory
+    *  `tests`: Tests
+    *  `utils`: Support utilities
+    *  `conf`:  Environment configuration
+    *  `assets`: Routing yaml's used by tests
 
 
-## Running the Tests
+## Environment Setup
 
-- You can run the testing by `py.test` on root folder of this project (`kiali-qe-rest`)
+- Dependencies that will need to be available prior to running this test suite
+ `oc`
+ `python 3.6`
 
-or
+```sh
+# Clone this repository
+$ git clone https://github.com/Kiali-QE/kiali-qe-rest.git
+$ cd kiali-qe-rest/
 
-- You can configure Pycharm to run the test for you. 
+# Create virtual environment
+$ virtualenv .env-e2e
+
+# Enable virtual environment
+$ source .env-e2e/bin/activate
+
+# Install requirements
+$ pip install -U pip
+$ pip install -r requirements.txt
+
+# Update conf/env.yaml with kiali hostname and credentials
+
+# Login to Openshift Cluster 
+$ oc login https://<openshift>:8443 --username=<username> --password=<password> --insecure-skip-tls-verify=true
+
+# run all tests
+$ pytest -s tests/
+```
+

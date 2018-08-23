@@ -25,10 +25,10 @@ def test_service_graph_bookinfo_namespace_(kiali_client):
 
     # Validate Node count
     nodes = kiali_client.graph_namespace(namespace=bookinfo_namespace, params=PARAMS)["elements"]['nodes']
-    print "Node count: {}".format(len(nodes))
+    #print "Node count: {}".format(len(nodes))
     assert len(nodes) >=  BOOKINFO_EXPECTED_NODES
     
     # validate edge count
     edges = kiali_client.graph_namespace(namespace=bookinfo_namespace, params=PARAMS)["elements"]['edges']
-    print "Edge count: {}".format(len(edges))
+    #print "Edge count: {}".format(len(edges))
     assert len(edges) >= BOOKINFO_EXPECTED_EDGES

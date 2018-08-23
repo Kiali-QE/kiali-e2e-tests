@@ -5,8 +5,8 @@ HOME=`pwd`
 yum install python-virtualenv  -y
 
 # Setup virtual environment
-virtualenv .kiali-qe-rest
-source .kiali-qe-rest/bin/activate
+virtualenv .kiali-e2e
+source .kiali-e2e/bin/activate
 
 # Install base requirements
 pip install -U pip
