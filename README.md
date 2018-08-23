@@ -12,8 +12,8 @@
 ## Environment Setup
 
 * Dependencies that will need to be available prior to running this test suite
- * `oc`
- * `python 3.6`
+    *  `oc`
+    *  `python 3.6`
 
 ```sh
 # Clone this repository
