@@ -2,7 +2,7 @@
 
 ### Project Structure
 
-* `kiali-qe-rest/`: Root directory
+* `kiali-e2e/`: Root directory
     *  `tests`: Tests
     *  `utils`: Support utilities
     *  `conf`:  Environment configuration
@@ -11,7 +11,7 @@
 
 ## Environment Setup
 
-- Dependencies that will need to be available prior to running this test suite
+* Dependencies that will need to be available prior to running this test suite
  `oc`
  `python 3.6`
 
