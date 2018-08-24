@@ -3,7 +3,7 @@ import yaml
 from kiali import KialiClient
 
 ENV_FILE = './config/env.yaml'
-CIRCUIT_BREAKER_FILE = 'assets/circuitbreaker.yml'
+CIRCUIT_BREAKER_FILE = 'assets/circuitbreaker.yaml'
 VIRTUAL_SERVICE_FILE = 'assets/bookinfo-ratings-delay.yaml'
 
 @pytest.fixture(scope="session")
